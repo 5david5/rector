@@ -173,8 +173,10 @@ CODE_SAMPLE
         }
 
         $assignsWithUniqueName = [];
+        /** @var array $singleAssignsByName */
         foreach ($assignsByName as $singleAssignsByName) {
-            if ((is_countable($singleAssignsByName) ? count($singleAssignsByName) : 0) > 1) {
+            $count = count($singleAssignsByName);
+            if ($count > 1) {
                 continue;
             }
 

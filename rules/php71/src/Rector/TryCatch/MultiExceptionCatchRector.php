@@ -70,9 +70,11 @@ CODE_SAMPLE
 
         $catchKeysByContent = $this->collectCatchKeysByContent($node);
 
+        /** @var array $singleCatchKeysByContent */
         foreach ($catchKeysByContent as $singleCatchKeysByContent) {
             // no duplicates
-            if ((is_countable($singleCatchKeysByContent) ? count($singleCatchKeysByContent) : 0) < 2) {
+            $count = count($singleCatchKeysByContent);
+            if ($count < 2) {
                 continue;
             }
 

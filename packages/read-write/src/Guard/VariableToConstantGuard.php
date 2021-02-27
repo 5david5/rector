@@ -81,7 +81,7 @@ final class VariableToConstantGuard
     }
 
     /**
-     * @return int[]
+     * @return int[]|mixed[]
      */
     private function resolveFunctionReferencePositions(FunctionReflection $functionReflection): array
     {

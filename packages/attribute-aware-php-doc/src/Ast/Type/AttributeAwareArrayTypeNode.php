@@ -68,8 +68,8 @@ final class AttributeAwareArrayTypeNode extends ArrayTypeNode implements Attribu
             return $attributeAwareUnionTypeNode . '[]';
         }
 
-        foreach ($attributeAwareUnionTypeNode->types as $unionedType) {
-            $unionedTypes[] = $unionedType . '[]';
+        foreach ($attributeAwareUnionTypeNode->types as $type) {
+            $unionedTypes[] = $type . '[]';
         }
 
         return implode('|', $unionedTypes);

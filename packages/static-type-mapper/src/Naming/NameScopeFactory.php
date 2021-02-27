@@ -7,7 +7,6 @@ namespace Rector\StaticTypeMapper\Naming;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\ClassLike;
 use PhpParser\Node\Stmt\Use_;
-use PhpParser\Node\Stmt\UseUse;
 use PHPStan\Analyser\NameScope;
 use PHPStan\Type\Generic\TemplateTypeMap;
 use PHPStan\Type\Type;
@@ -81,12 +80,11 @@ final class NameScopeFactory
         $useNamesByAlias = [];
 
         foreach ($useNodes as $useNode) {
-            foreach ($useNode->uses as $useUse) {
-                /** @var UseUse $useUse */
-                $aliasName = $useUse->getAlias()
+            foreach ($useNode->uses as $use) {
+                $aliasName = $use->getAlias()
                     ->name;
 
-                $useName = $useUse->name->toString();
+                $useName = $use->name->toString();
                 if (! is_string($useName)) {
                     throw new ShouldNotHappenException();
                 }

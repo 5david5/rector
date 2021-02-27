@@ -2,15 +2,13 @@
 
 namespace Rector\Naming\Tests\Rector\Foreach_\RenameForeachValueVariableToMatchExprVariableRector\Fixture;
 
-class SkipUsedInKey
+class SkipHasKey
 {
     public function run()
     {
         $array = [];
-        foreach ($variables as $variable => $property) {
-            $array[$variable] = $property;
+        foreach ($configuration as $constantName => $variableConfiguration) {
+            $array[$constantName] = $variableConfiguration;
         }
     }
 }
-
-?>

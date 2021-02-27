@@ -114,7 +114,7 @@ CODE_SAMPLE
 
         /** @var Array_ $optionsArray */
         $optionsArray = $funcCall->args[2]->value;
-        /** @var ArrayItem|null $arrayItem */
+        /** @var ArrayItem|null $item */
         foreach ($optionsArray->items as $item) {
             if ($item === null) {
                 continue;

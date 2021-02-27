@@ -132,7 +132,7 @@ CODE_SAMPLE
             return;
         }
 
-        /** @var Expression $methodStmt */
+        /** @var Expression $stmt */
         foreach ($classMethod->stmts as $stmt) {
             if ($stmt instanceof Expression) {
                 $stmt = $stmt->expr;

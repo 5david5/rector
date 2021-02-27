@@ -130,7 +130,7 @@ CODE_SAMPLE
 
         $this->complexNodeRemover->removePropertyAndUsages($node, $vendorLockedClassMethodNames);
 
-        /** @var ClassMethod $method */
+        /** @var ClassMethod $singleClassMethodsToCheck */
         foreach ($classMethodsToCheck as $singleClassMethodsToCheck) {
             if (! $this->hasMethodSomeStmtsLeft($singleClassMethodsToCheck)) {
                 continue;

@@ -70,7 +70,7 @@ CODE_SAMPLE
 
         $catchKeysByContent = $this->collectCatchKeysByContent($node);
 
-        /** @var array $singleCatchKeysByContent */
+        /** @var Catch_[] $singleCatchKeysByContent */
         foreach ($catchKeysByContent as $singleCatchKeysByContent) {
             // no duplicates
             $count = count($singleCatchKeysByContent);

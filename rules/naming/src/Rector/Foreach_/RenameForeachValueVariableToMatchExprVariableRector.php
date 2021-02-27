@@ -94,9 +94,13 @@ CODE_SAMPLE
             return null;
         }
 
+        if (strpos($valueVarName, 'single') === 0) {
+            return null;
+        }
+
         $singularValueVarName = $this->inflector->singularize($exprName);
         $singularValueVarName = $singularValueVarName === $exprName
-            ? 'single' . ucfirst(ltrim($singularValueVarName, 'single'))
+            ? 'single' . ucfirst($singularValueVarName)
             : $singularValueVarName;
 
         if ($this->shouldSkip($keyVarName, $valueVarName, $singularValueVarName, $node)) {

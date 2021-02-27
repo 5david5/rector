@@ -191,8 +191,8 @@ CODE_SAMPLE
     public function configure(array $configuration): void
     {
         $typesToServices = $configuration[self::TYPES_TO_SERVICES] ?? [];
-        foreach ($typesToServices as $typeToService) {
-            $this->serviceObjectTypes[] = new ObjectType($typeToService);
+        foreach ($typesToServices as $typesToService) {
+            $this->serviceObjectTypes[] = new ObjectType($typesToService);
         }
     }
 
@@ -203,13 +203,16 @@ CODE_SAMPLE
             $this->serviceObjectTypes
         );
 
-        foreach ($staticTypesInClass as $staticType) {
-            $variableName = $this->propertyNaming->fqnToVariableName($staticType);
-            $this->addConstructorDependencyToClass($class, $staticType, $variableName);
+        foreach ($staticTypesInClass as $singleStaticTypesInClass) {
+            $variableName = $this->propertyNaming->fqnToVariableName($singleStaticTypesInClass);
+            $this->addConstructorDependencyToClass($class, $singleStaticTypesInClass, $variableName);
 
             // is this an object? create factory for it next to this :)
             if ($this->uniqueObjectOrServiceDetector->isUniqueObject()) {
-                $factoryClass = $this->uniqueObjectFactoryFactory->createFactoryClass($class, $staticType);
+                $factoryClass = $this->uniqueObjectFactoryFactory->createFactoryClass(
+                    $class,
+                    $singleStaticTypesInClass
+                );
 
                 $this->factoryClassPrinter->printFactoryForClass($factoryClass, $class);
             }

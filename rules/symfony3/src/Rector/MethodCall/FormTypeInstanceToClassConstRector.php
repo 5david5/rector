@@ -171,30 +171,30 @@ CODE_SAMPLE
             return;
         }
 
-        foreach ($optionsArray->items as $arrayItem) {
-            if ($arrayItem === null) {
+        foreach ($optionsArray->items as $item) {
+            if ($item === null) {
                 continue;
             }
 
-            if ($arrayItem->key === null) {
+            if ($item->key === null) {
                 continue;
             }
 
-            if (! $this->valueResolver->isValues($arrayItem->key, ['entry', 'entry_type'])) {
+            if (! $this->valueResolver->isValues($item->key, ['entry', 'entry_type'])) {
                 continue;
             }
 
-            if (! $arrayItem->value instanceof New_) {
+            if (! $item->value instanceof New_) {
                 continue;
             }
 
-            $newClass = $arrayItem->value->class;
+            $newClass = $item->value->class;
 
             if (! $newClass instanceof Name) {
                 continue;
             }
 
-            $arrayItem->value = $this->nodeFactory->createClassConstReference($newClass->toString());
+            $item->value = $this->nodeFactory->createClassConstReference($newClass->toString());
         }
     }
 

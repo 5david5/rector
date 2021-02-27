@@ -187,25 +187,25 @@ CODE_SAMPLE
         // they are added in reversed direction
         $methodCallsToAdd = array_reverse($methodCallsToAdd);
 
-        foreach ($methodCallsToAdd as $methodCallToAdd) {
+        foreach ($methodCallsToAdd as $singleMethodCallsToAdd) {
             // make var a parent method call
             $fluentMethodCall->var = new MethodCall(
                 $fluentMethodCall->var,
-                $methodCallToAdd->name,
-                $methodCallToAdd->args
+                $singleMethodCallsToAdd->name,
+                $singleMethodCallsToAdd->args
             );
         }
     }
 
     private function matchMethodCall(MethodCall $methodCall): ?ObjectType
     {
-        foreach ($this->callsToFluent as $callToFluent) {
-            if (! $this->isObjectType($methodCall, $callToFluent->getObjectType())) {
+        foreach ($this->callsToFluent as $singleCallsToFluent) {
+            if (! $this->isObjectType($methodCall, $singleCallsToFluent->getObjectType())) {
                 continue;
             }
 
-            if ($this->isNames($methodCall->name, $callToFluent->getMethodNames())) {
-                return $callToFluent->getObjectType();
+            if ($this->isNames($methodCall->name, $singleCallsToFluent->getMethodNames())) {
+                return $singleCallsToFluent->getObjectType();
             }
         }
 

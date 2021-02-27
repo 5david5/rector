@@ -142,8 +142,8 @@ CODE_SAMPLE
     private function getArrayItemsHash(Node $node): string
     {
         $arrayItemsHashes = [];
-        foreach ($node->items as $arrayItem) {
-            $arrayItemsHashes[] = $this->nodeComparator->printWithoutComments($arrayItem);
+        foreach ($node->items as $item) {
+            $arrayItemsHashes[] = $this->nodeComparator->printWithoutComments($item);
         }
 
         sort($arrayItemsHashes);

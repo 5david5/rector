@@ -230,12 +230,12 @@ final class NonInformativeReturnTagRemover
             return null;
         }
 
-        foreach ($attributeAwareReturnTagValueNode->type->types as $unionedReturnTagValueNode) {
-            if ($this->isIdentifierWithValues($unionedReturnTagValueNode, ['null'])) {
+        foreach ($attributeAwareReturnTagValueNode->type->types as $type) {
+            if ($this->isIdentifierWithValues($type, ['null'])) {
                 continue;
             }
 
-            return $unionedReturnTagValueNode;
+            return $type;
         }
 
         return null;

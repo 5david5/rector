@@ -37,8 +37,8 @@ final class DesiredStaticCallTypeToDynamicRector extends AbstractRector
     public function __construct(PropertyNaming $propertyNaming, ParameterProvider $parameterProvider)
     {
         $typesToRemoveStaticFrom = $parameterProvider->provideArrayParameter(Option::TYPES_TO_REMOVE_STATIC_FROM);
-        foreach ($typesToRemoveStaticFrom as $typeToRemoveStaticFrom) {
-            $this->staticObjectTypes[] = new ObjectType($typeToRemoveStaticFrom);
+        foreach ($typesToRemoveStaticFrom as $singleTypesToRemoveStaticFrom) {
+            $this->staticObjectTypes[] = new ObjectType($singleTypesToRemoveStaticFrom);
         }
 
         $this->propertyNaming = $propertyNaming;
@@ -84,8 +84,8 @@ CODE_SAMPLE
      */
     public function refactor(Node $node): ?Node
     {
-        foreach ($this->staticObjectTypes as $classType) {
-            if (! $this->isObjectType($node->class, $classType)) {
+        foreach ($this->staticObjectTypes as $staticObjectType) {
+            if (! $this->isObjectType($node->class, $staticObjectType)) {
                 continue;
             }
 
@@ -95,7 +95,7 @@ CODE_SAMPLE
                 return $this->createFromSelf($node);
             }
 
-            $propertyName = $this->propertyNaming->fqnToVariableName($classType);
+            $propertyName = $this->propertyNaming->fqnToVariableName($staticObjectType);
 
             $currentMethodName = $node->getAttribute(AttributeKey::METHOD_NAME);
             if ($currentMethodName === MethodName::CONSTRUCT) {

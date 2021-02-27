@@ -27,8 +27,8 @@ final class DesiredPropertyClassMethodTypeToDynamicRector extends AbstractRector
     public function __construct(ParameterProvider $parameterProvider)
     {
         $typesToRemoveStaticFrom = $parameterProvider->provideArrayParameter(Option::TYPES_TO_REMOVE_STATIC_FROM);
-        foreach ($typesToRemoveStaticFrom as $typeToRemoveStaticFrom) {
-            $this->staticObjectTypes[] = new ObjectType($typeToRemoveStaticFrom);
+        foreach ($typesToRemoveStaticFrom as $singleTypesToRemoveStaticFrom) {
+            $this->staticObjectTypes[] = new ObjectType($singleTypesToRemoveStaticFrom);
         }
     }
 

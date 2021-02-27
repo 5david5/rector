@@ -109,8 +109,8 @@ CODE_SAMPLE
         /** @var string $className */
         $className = $node->getAttribute(AttributeKey::CLASS_NAME);
 
-        foreach ($externalCalls as $call) {
-            $class = $call->getAttribute(AttributeKey::CLASS_NODE);
+        foreach ($externalCalls as $externalCall) {
+            $class = $externalCall->getAttribute(AttributeKey::CLASS_NODE);
             if (! $class instanceof Class_) {
                 return null;
             }

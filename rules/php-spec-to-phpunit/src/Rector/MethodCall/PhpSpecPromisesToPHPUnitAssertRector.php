@@ -253,8 +253,8 @@ final class PhpSpecPromisesToPHPUnitAssertRector extends AbstractPhpSpecToPHPUni
      */
     private function processMatchersKeys(MethodCall $methodCall): void
     {
-        foreach ($this->matchersKeys as $matcherKey) {
-            if (! $this->isName($methodCall->name, 'should' . ucfirst($matcherKey))) {
+        foreach ($this->matchersKeys as $matchersKey) {
+            if (! $this->isName($methodCall->name, 'should' . ucfirst($matchersKey))) {
                 continue;
             }
 
@@ -264,7 +264,7 @@ final class PhpSpecPromisesToPHPUnitAssertRector extends AbstractPhpSpecToPHPUni
 
             // 1. assign callable to variable
             $thisGetMatchers = $this->nodeFactory->createMethodCall(self::THIS, 'getMatchers');
-            $arrayDimFetch = new ArrayDimFetch($thisGetMatchers, new String_($matcherKey));
+            $arrayDimFetch = new ArrayDimFetch($thisGetMatchers, new String_($matchersKey));
             $matcherCallableVariable = new Variable('matcherCallable');
             $assign = new Assign($matcherCallableVariable, $arrayDimFetch);
 

@@ -60,16 +60,16 @@ final class ClassConstFetchToValueRector extends AbstractRector implements Confi
      */
     public function refactor(Node $node): ?Node
     {
-        foreach ($this->classConstFetchesToValues as $classConstFetchToValue) {
-            if (! $this->isObjectType($node->class, $classConstFetchToValue->getObjectType())) {
+        foreach ($this->classConstFetchesToValues as $classConstFetchesToValue) {
+            if (! $this->isObjectType($node->class, $classConstFetchesToValue->getObjectType())) {
                 continue;
             }
 
-            if (! $this->isName($node->name, $classConstFetchToValue->getConstant())) {
+            if (! $this->isName($node->name, $classConstFetchesToValue->getConstant())) {
                 continue;
             }
 
-            return BuilderHelpers::normalizeValue($classConstFetchToValue->getValue());
+            return BuilderHelpers::normalizeValue($classConstFetchesToValue->getValue());
         }
 
         return $node;

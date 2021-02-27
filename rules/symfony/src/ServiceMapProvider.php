@@ -78,15 +78,15 @@ final class ServiceMapProvider
         /** @var ServiceDefinition[] $aliases */
         $aliases = [];
 
-        foreach ($xml->services->service as $def) {
+        foreach ($xml->services->service as $singleService) {
             /** @var SimpleXMLElement $attrs */
-            $attrs = $def->attributes();
+            $attrs = $singleService->attributes();
             if (! (property_exists($attrs, 'id') && $attrs->id !== null)) {
                 continue;
             }
 
-            $def = $this->convertXmlToArray($def);
-            $tags = $this->createTagFromXmlElement($def);
+            $singleService = $this->convertXmlToArray($singleService);
+            $tags = $this->createTagFromXmlElement($singleService);
 
             $service = $this->createServiceFromXmlAndTagsData($attrs, $tags);
             if ($service->getAlias() !== null) {

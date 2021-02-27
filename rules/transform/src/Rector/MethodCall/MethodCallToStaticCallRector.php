@@ -88,18 +88,18 @@ CODE_SAMPLE
      */
     public function refactor(Node $node): ?Node
     {
-        foreach ($this->methodCallsToStaticCalls as $methodCallToStaticCall) {
-            if (! $this->isObjectType($node->var, $methodCallToStaticCall->getOldObjectType())) {
+        foreach ($this->methodCallsToStaticCalls as $methodCallsToStaticCall) {
+            if (! $this->isObjectType($node->var, $methodCallsToStaticCall->getOldObjectType())) {
                 continue;
             }
 
-            if (! $this->isName($node->name, $methodCallToStaticCall->getOldMethod())) {
+            if (! $this->isName($node->name, $methodCallsToStaticCall->getOldMethod())) {
                 continue;
             }
 
             return $this->nodeFactory->createStaticCall(
-                $methodCallToStaticCall->getNewClass(),
-                $methodCallToStaticCall->getNewMethod(),
+                $methodCallsToStaticCall->getNewClass(),
+                $methodCallsToStaticCall->getNewMethod(),
                 $node->args
             );
         }

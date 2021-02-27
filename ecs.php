@@ -14,7 +14,7 @@ use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayListItemNewlineFixer;
 use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayOpenerAndCloserNewlineFixer;
 use Symplify\CodingStandard\Fixer\ArrayNotation\StandaloneLineInMultilineArrayFixer;
 use Symplify\CodingStandard\Fixer\Commenting\RemoveCommentedCodeFixer;
-//use Symplify\CodingStandard\Fixer\LineLength\LineLengthFixer;
+use Symplify\CodingStandard\Fixer\LineLength\LineLengthFixer;
 use Symplify\EasyCodingStandard\ValueObject\Option;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
@@ -28,7 +28,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             'annotations' => ['throws', 'author', 'package', 'group'],
         ]]);
 
-    //$services->set(LineLengthFixer::class);
+    $services->set(LineLengthFixer::class);
 
     $services->set(NoSuperfluousPhpdocTagsFixer::class)
         ->call('configure', [[
